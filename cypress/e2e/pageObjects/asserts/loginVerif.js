@@ -6,10 +6,10 @@ class loginVerif {
         cy.get(loginSelector.passwordInput).should('be.visible');
         cy.get(loginSelector.loginBtn).should('be.visible');
     }
-    shouldRedirectToInventory(){
-        cy.url().should('include','/inventory.html');
+    shouldRedirectTo(expectedUrl){
+        cy.url().should('include',expectedUrl);
     }
-    shouldSeeErrorMassage(expectedMassage){
+    shouldShowError(expectedMessage){
         cy.get(loginSelector.errorMessage).should('be.visible').and('contain.text', expectedMessage);
     }
 }

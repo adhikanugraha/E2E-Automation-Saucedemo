@@ -1,13 +1,21 @@
 import loginVerif from "../pageObjects/asserts/loginVerif";
 import loginAction from "../pageObjects/keywordActions/loginAction";
+import loginData from "../../fixtures/loginData";
 
-describe('Login Test', ()=> {
-    it('Should login successfully and view product page', () => {
-        loginAction.visitLogin();
-        loginVerif.shouldShowLoginForm();
-        loginAction.enterUsername('standard_user');
-        loginAction.enterPassword('secret_sauce');
-        loginAction.clickLoginButton();
-        loginVerif.shouldRedirectToInventory();
+describe('Login Test (Data-Driven)', () => {
+  loginData.forEach((data) => {
+    it(`${data.case}`, () => {
+      loginAction.visitLogin();
+      loginVerif.shouldShowLoginForm();
+      loginAction.enterUsername(data.username);
+      loginAction.enterPassword(data.password);
+      loginAction.clickLoginButton();
+
+      if (data.expectedUrl) {
+        loginVerif.shouldRedirectTo(data.expectedUrl);
+      } else if (data.expectedError) {
+        loginVerif.shouldShowError(data.expectedError);
+      }
     });
+  });
 });

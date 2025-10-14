@@ -4,11 +4,22 @@ class loginAction{
         cy.visit('https://www.saucedemo.com/');
     }
     enterUsername(username){
-        cy.get(loginSelector.usernameInput).type(username);
+        if(username){
+            cy.get(loginSelector.usernameInput).type(username);
+        }
+        else{
+            cy.get(loginSelector.usernameInput).clear();
+        }
+        
     }
     enterPassword(password){
-        cy.get(loginSelector.passwordInput).type(password);
-    }
+        if(password){
+            cy.get(loginSelector.passwordInput).type(password);
+        }
+        else{
+            cy.get(loginSelector.passwordInput).clear();
+        }
+        }
     clickLoginButton(){
         cy.get(loginSelector.loginBtn).click()
     }    
