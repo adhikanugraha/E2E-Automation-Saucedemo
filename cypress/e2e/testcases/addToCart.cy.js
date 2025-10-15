@@ -3,6 +3,7 @@ import loginVerif from "../pageObjects/asserts/loginVerif";
 import productVerif from "../pageObjects/asserts/productVerif";
 import loginAction from "../pageObjects/keywordActions/loginAction";
 import productAction from "../pageObjects/keywordActions/productAction";
+import cartData from "../../fixtures/addTocartData.json";
 
 describe('Add to Cart', ()=> {
     beforeEach(() => {
@@ -12,24 +13,21 @@ describe('Add to Cart', ()=> {
             loginAction.clickLoginButton();
             
         });
-    it('Can add product to cart',() => {
-        const expectedProducts = [
-            'Sauce Labs Backpack',
-            'Sauce Labs Bike Light'
-        ];
-
-        productVerif.verifProductDisplayed();
-        productVerif.cartShouldEmpty();
         
-        expectedProducts.forEach((productName) => {
-            productAction.addProductToCart(productName);
+    cartData.forEach((data) => {
+        it(`${data.case}`, () => {
+            productVerif.verifProductDisplayed();
+            productVerif.cartShouldEmpty();
+
+            data.products.forEach((p) => productAction.addProductToCart(p));
+
+            productVerif.cartBadgeShouldVisible();
+            productVerif.verifBadgeCount(data.products.length);
+            productAction.goToCart();
+            cartVerif.verifItemCount(data.products.length);
+            cartVerif.verifyAllProducts(data.products);
         });
-        productVerif.cartBadgeShouldVisible();
-        productVerif.verifBadgeCount(expectedProducts.length);
-        productAction.goToCart();
-        cartVerif.verifItemCount(expectedProducts.length);
-        cartVerif.verifyAllProducts(expectedProducts);
-    })
+    });
 
     
     

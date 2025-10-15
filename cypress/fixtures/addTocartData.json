@@ -1,0 +1,10 @@
+[
+  {
+    "case": "Add 2 products",
+    "products": ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
+  },
+  {
+    "case": "Add 1 product only",
+    "products": ["Sauce Labs Onesie"]
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "case": "Checkout 2 products with valid data",
+    "firstname": "Adhika",
+    "lastname": "Nugraha",
+    "postalCode": "4321",
+    "products": ["Sauce Labs Backpack", "Sauce Labs Bike Light"]
+  },
+  {
+    "case": "Checkout 1 product with different user",
+    "firstname": "Rafi",
+    "lastname": "Pratama",
+    "postalCode": "9876",
+    "products": ["Sauce Labs Bolt T-Shirt"]
+  },
+  {
+    "case": "Empty firstname",
+    "firstname": "",
+    "lastname": "Nugraha",
+    "postalCode": "4321",
+    "products": ["Sauce Labs Backpack"],
+    "expectedError": "Error: First Name is required"
+  }
+]

@@ -2,13 +2,30 @@ import coInfoSelector from "../selectors/coInfoSelector";
 
 class coInfoAction {
     enterFirstname(firstname){
-        cy.get(coInfoSelector.firstnameInput).type(firstname);
+        if(firstname){
+            cy.get(coInfoSelector.firstnameInput).type(firstname);
+        }
+        else{
+            cy.get(coInfoSelector.firstnameInput).clear();
+        }
+        
     }
     enterLastname(lastname){
-        cy.get(coInfoSelector.lastnameInput).type(lastname);
+        if(lastname){
+            cy.get(coInfoSelector.lastnameInput).type(lastname);
+        }
+        else{
+            cy.get(coInfoSelector.lastnameInput).clear();
+        }
+        
     }
     enterAdress(adress){
-        cy.get(coInfoSelector.addressInput).type(adress);
+        if(adress){
+            cy.get(coInfoSelector.adressInput).type(adress);
+        }
+        else{
+            cy.get(coInfoSelector.adressInput).clear();
+        }
     }
     clickCancel(){
         cy.get(coInfoSelector.cancelBtn).click();

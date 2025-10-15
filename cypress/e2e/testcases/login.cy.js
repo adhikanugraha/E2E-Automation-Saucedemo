@@ -1,6 +1,6 @@
 import loginVerif from "../pageObjects/asserts/loginVerif";
 import loginAction from "../pageObjects/keywordActions/loginAction";
-import loginData from "../../fixtures/loginData";
+import loginData from "../../fixtures/loginData.json";
 
 describe('Login Test (Data-Driven)', () => {
   loginData.forEach((data) => {
